@@ -1,10 +1,10 @@
 import React, { FC, useState, useEffect, useRef, ChangeEvent, KeyboardEvent } from 'react'
 import { connect } from 'react-redux'
-import { faListAlt, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 import { logout, LoginDispatcher } from '@/app/actions/login'
 import { addTodo, updateTodo, deleteTodo, fetchTodos, TodoDispatcher } from '@/app/actions/todo'
-import { Header } from '@/app/components/Header'
 import { TodoItem } from '@/app/components/TodoItem'
 import { ListWrapper } from '@/app/components/ListWrapper'
 import { Modal } from '@/app/components/Modal'
@@ -95,19 +95,17 @@ const TodoApp: FC<TodoAppProps> = (props: TodoAppProps) => {
 
   return (
     <div className={style.container}>
-      <Header title={words.todoApp.title} userId={props.userId} icon={faListAlt} />
-
       <div>
         <button type="button" className={style.fetchButton} disabled={props.fetching} onClick={handleFetchTodos}>
           {words.todoApp.fetchTodos}
+        </button>
+        <button type="button" className={style.addButton} onClick={modalOpen}>
+          {words.todoApp.newTodo}
         </button>
         <button type="button" className={style.logoutButton} onClick={handleLogout}>
           {words.todoApp.logout}
         </button>
       </div>
-      <button type="button" className={style.addButton} onClick={modalOpen}>
-        {words.todoApp.newTodo}
-      </button>
       <Modal hidden={modalHidden} onLoad={handleModalLoad} icon={faPlusCircle} name={words.todoApp.newTodo} close={modalClose}>
         <input
           ref={inputElem}
@@ -124,11 +122,50 @@ const TodoApp: FC<TodoAppProps> = (props: TodoAppProps) => {
         </button>
       </Modal>
 
-      <ListWrapper loading={props.fetching}>
-        {props.todos.map((todo: Todo) => (
-          <TodoItem key={todo.id} todo={todo} handleCheckBoxClick={handleCheckBoxClick} handleDeleteClick={handleDeleteClick} />
-        ))}
-      </ListWrapper>
+      <div className={style.listWrapper1}>
+        <h2>react-transition-group</h2>
+        <ListWrapper loading={props.fetching}>
+          <TransitionGroup>
+            {props.todos.map((todo: Todo) => (
+              <CSSTransition
+                key={todo.id}
+                timeout={{ enter: 200, exit: 200 }}
+                classNames={{
+                  enter: style.todoItemEnter,
+                  enterActive: style.todoItemEnterActive,
+                  exit: style.todoItemExit,
+                  exitActive: style.todoItemExitActive,
+                }}
+              >
+                <TodoItem
+                  key={todo.id}
+                  todo={todo}
+                  handleCheckBoxClick={handleCheckBoxClick}
+                  handleDeleteClick={handleDeleteClick}
+                />
+              </CSSTransition>
+            ))}
+          </TransitionGroup>
+        </ListWrapper>
+      </div>
+
+      <div className={style.listWrapper2}>
+        <h2>react-motion</h2>
+        <ListWrapper loading={props.fetching}>
+          {props.todos.map((todo: Todo) => (
+            <TodoItem key={todo.id} todo={todo} handleCheckBoxClick={handleCheckBoxClick} handleDeleteClick={handleDeleteClick} />
+          ))}
+        </ListWrapper>
+      </div>
+
+      <div className={style.listWrapper3}>
+        <h2>No animations</h2>
+        <ListWrapper loading={props.fetching}>
+          {props.todos.map((todo: Todo) => (
+            <TodoItem key={todo.id} todo={todo} handleCheckBoxClick={handleCheckBoxClick} handleDeleteClick={handleDeleteClick} />
+          ))}
+        </ListWrapper>
+      </div>
       <Footer />
     </div>
   )
