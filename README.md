@@ -2,6 +2,10 @@
 
 Considering and training for animations on React
 
+## Conclusions
+
+I've decided to use `react-transition-group` because I have felt the library is the most familiar with css-modules. Most of the recent libraries generate the dedicated component which is set styles in JavaScript or give properties to the specified component through the `style` prop directly. That ways are not good with css-modules. CSS animation styles should be also defined in css (or scss/sass) files.
+
 ## npm trends
 
 [react-motion vs react-transition-group vs react-spring vs react-pose](https://www.npmtrends.com/react-motion-vs-react-transition-group-vs-react-spring-vs-react-pose) on 2019/08/12 (JST)
@@ -10,7 +14,7 @@ Considering and training for animations on React
 
 ![npm_trends_02](./data/npm_trends_02.png)
 
-`react-motion` seems to be not maintained.
+- `react-motion` seems to be not maintained.
 
 ## How to run
 
