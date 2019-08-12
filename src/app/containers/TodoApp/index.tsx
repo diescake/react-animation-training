@@ -153,7 +153,7 @@ const TodoApp: FC<TodoAppProps> = (props: TodoAppProps) => {
       </div>
 
       <div className={style.listWrapper2}>
-        <h2>react-motion</h2>
+        <h2>An other library (not implemented)</h2>
         <ListWrapper loading={props.fetching}>
           {props.todos.map((todo: Todo) => (
             <TodoItem key={todo.id} todo={todo} handleCheckBoxClick={handleCheckBoxClick} handleDeleteClick={handleDeleteClick} />
