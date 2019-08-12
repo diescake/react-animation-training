@@ -2,6 +2,16 @@
 
 Training for animations on React
 
+## npm trends
+
+[react-motion vs react-transition-group vs react-spring vs react-pose](https://www.npmtrends.com/react-motion-vs-react-transition-group-vs-react-spring-vs-react-pose) on 2019/08/12 (JST)
+
+![npm_trends_01](./data/npm_trends_01.png)
+
+![npm_trends_02](./data/npm_trends_02.png)
+
+`react-motion` seems to be not maintained.
+
 ## How to run
 
 ```sh
