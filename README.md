@@ -1,6 +1,6 @@
 # react-animation-training
 
-Training for animations on React
+Considering and training for animations on React
 
 ## npm trends
 
