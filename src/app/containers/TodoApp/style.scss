@@ -42,6 +42,17 @@
   transition: all 200ms ease-in;
 }
 
+.todoItemAppear {
+  transform: translate(-60px, 0);
+  opacity: 0.01;
+}
+
+.todoItemAppearActive {
+  transform: translate(0, 0);
+  opacity: 1;
+  transition: all 200ms ease-in;
+}
+
 .todoItemExit {
   transform: translate(0, 0);
   opacity: 1;

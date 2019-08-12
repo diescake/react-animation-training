@@ -129,8 +129,11 @@ const TodoApp: FC<TodoAppProps> = (props: TodoAppProps) => {
             {props.todos.map((todo: Todo) => (
               <CSSTransition
                 key={todo.id}
-                timeout={{ enter: 200, exit: 200 }}
+                timeout={{ appear: 200, enter: 200, exit: 200 }}
+                appear
                 classNames={{
+                  appear: style.todoItemAppear,
+                  appearActive: style.todoItemAppearActive,
                   enter: style.todoItemEnter,
                   enterActive: style.todoItemEnterActive,
                   exit: style.todoItemExit,
